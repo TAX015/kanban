@@ -65,3 +65,6 @@ group :test do
 end
 
 gem "tailwindcss-ruby", "~> 4.1"
+gem "paranoia"
+gem "simple_form"
+gem "simple_form-tailwind"

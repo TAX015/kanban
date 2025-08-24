@@ -184,6 +184,8 @@ GEM
       racc (~> 1.4)
     ostruct (0.6.1)
     parallel (1.27.0)
+    paranoia (3.0.1)
+      activerecord (>= 6, < 8.1)
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
@@ -288,6 +290,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
+    simple_form-tailwind (0.2.0)
+      railties (>= 7.0)
+      simple_form (>= 5.0)
     solid_cable (3.0.8)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -369,12 +377,15 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  paranoia
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
   rubocop-rails-omakase
   selenium-webdriver
+  simple_form
+  simple_form-tailwind
   solid_cable
   solid_cache
   solid_queue
