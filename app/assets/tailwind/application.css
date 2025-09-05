@@ -2,3 +2,7 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../../../node_modules/flowbite";
+
+.opacity-75 {
+  opacity: 0.75;
+}

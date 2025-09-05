@@ -2,3 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import 'flowbite';
+import jquery from 'jquery';
+window.jQuery = jquery;
+window.$ = jquery;
