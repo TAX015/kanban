@@ -2,28 +2,45 @@
 
 <div class="w-full">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert" id="notice"><%= notice %></p>
   <% end %>
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Projects</h1>
-    <%= link_to "New project", new_project_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <%= link_to "New project", new_project_path, class: "text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" %>
   </div>
 
-  <div id="projects" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @projects.any? %>
-      <% @projects.each do |project| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render project %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", project, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_project_path(project), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", project, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No projects found.</p>
-    <% end %>
+  
+
+  <div class="relative overflow-hidden rounded-sm mt-3">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+          <th scope="col" class="px-6 py-3">Description</th>
+          <th scope="col" class="px-6 py-3"> Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <% if @projects.any? %>
+            <% @projects.each do |project| %>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"><%= project.name %></th>
+                <td class="px-3 py-2"><%= project.status %></td>
+                <td class="px-3 py-2"><%= project.description %></td>
+                <td class="px-3 py-2">
+                  <%= link_to "Show", project, class: "font-medium text-fg-brand hover:underline" %>
+                  <%= link_to "Edit", edit_project_path(project), class: "font-medium text-fg-brand ms-3 hover:underline" %>
+                  <%= link_to "Destroy", project, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "font-medium text-danger ms-3 hover:underline" %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <p class="text-center my-10">No projects found.</p>
+          <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
