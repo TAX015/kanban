@@ -1,4 +1,16 @@
 @layer utilities {
+  .flex-col {
+    flex-direction: column;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
   /* ===================== Margin ===================== */
   .mx-1 {
     margin-inline: calc(var(--spacing) * 1);

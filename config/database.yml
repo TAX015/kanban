@@ -20,8 +20,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch("POSTGRES_USER") { "postgres" } %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD") { "postgres" } %>
-  host: 172.28.6.246
-  timeout: 5000
+  host: localhost
+  # Setting for database in windows
+  # host: 172.28.6.246
+  # timeout: 5000
 
 development:
   <<: *default
