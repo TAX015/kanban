@@ -3,7 +3,8 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   # Default class for buttons
-  config.button_class = 'my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded'
+  # config.button_class = 'my-2 bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded'
+  config.button_class = 'text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none cursor-pointer'
 
   # Define the default class of the input wrapper of the boolean input.
   config.boolean_label_class = ''
@@ -169,21 +170,45 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-gray-700 text-xs italic' }
   end
 
+  # 1. custom Tailwind wrapper using Flowbite styles
+  config.wrappers :flowbite_tailwind, tag: 'div', class: 'my-5', error_class: 'field-with-errors' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    # label class
+    b.use :label, class: 'block mb-2.5 text-sm font-medium text-heading'
+    
+    # input class (applied to text fields, textareas, selects, etc.)
+    b.use :input, class: 'bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body',
+                  error_class: 'border-red-500 focus:ring-red-500 focus:border-red-500' # Optional: red borders on error
+    
+    # error message class
+    b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-500 text-xs italic' }
+    
+    # Optional hint class
+    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 text-sm text-body italic' }
+  end
+
   # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :vertical_form
+  config.default_wrapper = :flowbite_tailwind
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper used for the input.
   config.wrapper_mappings = {
     boolean: :vertical_boolean,
     check_boxes: :vertical_collection,
-    collection: :vertical_collection,
+    collection: :flowbite_tailwind,
     date: :vertical_date,
     datetime: :vertical_datetime,
     file: :vertical_file,
     radio_buttons: :vertical_collection,
     range: :vertical_range,
-    select: :vertical_select,
+    select: :flowbite_tailwind,
     time: :vertical_time,
     datetime_local: :vertical_datetime_local
   }
