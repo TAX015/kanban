@@ -1,20 +1,100 @@
-<% content_for :title, "Showing project" %>
+<% content_for :title, "Kanban | #{@project.name}" %>
 
-<div class="md:w-2/3 w-full">
-  <% if notice.present? %>
-    <p class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft" role="alert" id="notice"><%= notice %></p>
-  <% end %>
+<%= link_to projects_path, class: "flex items-center gap-2 w-fit text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" do %>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+  </svg>
+  Back to projects
+<% end %>
+<h1 class="font-bold text-4xl mt-4"><%= @project.name %></h1>
+<div class="flex h-full min-h-[calc(100vh-4rem)] items-start gap-6 overflow-x-auto bg-[#111827] p-6 text-white" data-controller="kanban-modal" data-action="click->kanban-modal#closeBackground">
+  
+  <div class="flex w-80 shrink-0 flex-col gap-4">
+    <div class="flex items-center justify-between px-1">
+      <h2 class="text-sm font-semibold text-gray-200">In Progress</h2>
+      <button class="text-gray-400 hover:text-white">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+      </button>
+    </div>
 
-  <%= link_to projects_path, class: "flex items-center gap-2 w-fit text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" do %>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
-    </svg>
-    Back to projects
-  <% end %>
-  <h1 class="font-bold text-4xl mt-4">Showing project</h1>
+    <div class="group flex flex-col gap-3 rounded-xl bg-[#1F2937] p-4 shadow-sm transition-all hover:ring-1 hover:ring-gray-600">
+      <div class="flex items-start justify-between">
+        <h3 class="font-medium text-gray-100">Redesign tables card</h3>
+        <button class="invisible text-gray-400 hover:text-white group-hover:visible">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+        </button>
+      </div>
 
-  <%= render @project %>
+      <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=400&h=200" alt="Whiteboard session" class="h-40 w-full rounded-lg object-cover">
 
-  <%= link_to "Edit this project", edit_project_path(@project), class: "text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none" %>
-  <%= button_to "Destroy this project", @project, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0", class: "text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+      <p class="text-xs leading-relaxed text-gray-400">
+        In _variables.scss on line 672 you define $table_variants. Each instance of "color-level" needs to be changed to "shift-color".
+      </p>
+
+      <div class="mt-1 flex items-center justify-between">
+        <div class="flex -space-x-2">
+          <img class="h-6 w-6 rounded-full ring-2 ring-[#1F2937]" src="https://i.pravatar.cc/100?img=1" alt="Avatar">
+          <img class="h-6 w-6 rounded-full ring-2 ring-[#1F2937]" src="https://i.pravatar.cc/100?img=2" alt="Avatar">
+          <img class="h-6 w-6 rounded-full ring-2 ring-[#1F2937]" src="https://i.pravatar.cc/100?img=3" alt="Avatar">
+        </div>
+        <span class="flex items-center gap-1 rounded bg-red-900/80 px-2 py-1 text-[10px] font-medium text-red-200">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          9 days left
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex w-80 shrink-0 flex-col gap-4">
+    <div class="flex items-center justify-between px-1">
+      <h2 class="text-sm font-semibold text-gray-200">Done</h2>
+      <button class="text-gray-400 hover:text-white">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path></svg>
+      </button>
+    </div>
+
+    <div class="group flex flex-col gap-3 rounded-xl bg-[#1F2937] p-4 shadow-sm transition-all hover:ring-1 hover:ring-gray-600">
+      <div class="flex items-start justify-between">
+        <h3 class="font-medium text-gray-100">Redesign tables card</h3>
+        <button class="invisible text-gray-400 hover:text-white group-hover:visible">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+        </button>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400&h=200" alt="Team meeting" class="h-40 w-full rounded-lg object-cover">
+
+      <p class="text-xs leading-relaxed text-gray-400">
+        In _variables.scss on line 672 you define $table_variants. Each instance of "color-level" needs to be changed to "shift-color".
+      </p>
+
+      <div class="mt-1 flex items-center justify-between">
+        <div class="flex -space-x-2">
+          <img class="h-6 w-6 rounded-full ring-2 ring-[#1F2937]" src="https://i.pravatar.cc/100?img=1" alt="Avatar">
+          <img class="h-6 w-6 rounded-full ring-2 ring-[#1F2937]" src="https://i.pravatar.cc/100?img=2" alt="Avatar">
+          <img class="h-6 w-6 rounded-full ring-2 ring-[#1F2937]" src="https://i.pravatar.cc/100?img=3" alt="Avatar">
+        </div>
+        <span class="flex items-center gap-1 rounded bg-[#064E3B] px-2 py-1 text-[10px] font-medium text-green-300">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Done
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex w-80 shrink-0 flex-col pt-9">
+    <button class="flex h-32 w-full items-center justify-center rounded-xl bg-[#1F2937]/50 text-gray-500 transition-colors hover:bg-[#1F2937] hover:text-gray-300" data-action="click->kanban-modal#open">
+      <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+    </button>
+  </div>
+
+  <div data-kanban-modal-target="dialog" class="hidden fixed inset-0 bg-gray-900/75 flex items-center justify-center">
+    <div class="relative dark:bg-gray-800 dark:border-gray-700 p-6 rounded-lg w-1/4">
+      <button data-action="click->kanban-modal#close" class="absolute right-4 top-4 text-gray-400 hover:text-white">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+      
+      <h2 class="text-xl font-semibold mb-4 text-white">Create Group</h2>
+      <%= render 'groups/form', group: Group.new %>
+    </div>
+  </div>
 </div>
